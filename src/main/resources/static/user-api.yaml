@@ -5,6 +5,7 @@ info:
 tags:
   - name: User
   - name: UserRole
+  - name: Role
 paths:
   # User Endpoints
   /users/:
@@ -76,6 +77,19 @@ paths:
       summary: GetUserById
       operationId: GetUserById
       description: GetUserById
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    delete:
+      tags:
+        - User
+      summary: DeleteUserById
+      operationId: DeleteUserById
+      description: DeleteUserById
       responses:
         200:
           description: OK
@@ -173,6 +187,109 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserRole'
+    get:
+      tags:
+        - UserRole
+      summary: FindUserRoleById
+      operationId: FindUserRoleById
+      description: FindUserRoleById
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserRole'
+  # Role Endpoints
+  /roles/{id}:
+    parameters:
+      - in: path
+        required: true
+        name: id
+        schema:
+          type: string
+          format: uuid
+    put:
+      tags:
+        - Role
+      summary: UpdateRole
+      operationId: UpdateRole
+      description: UpdateRole
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Role'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+    get:
+      tags:
+        - Role
+      summary: FindRoleById
+      operationId: FindRoleById
+      description: FindRoleById
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+    delete:
+      tags:
+        - Role
+      summary: DeleteRoleById
+      operationId: DeleteRoleById
+      description: DeleteRoleById
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+  /roles/:
+    post:
+      tags:
+        - Role
+      summary: CreateRole
+      operationId: CreateRole
+      description: CreateRole
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Role'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+                format: uuid
+    get:
+      tags:
+        - Role
+      summary: ListRole
+      operationId: ListRole
+      description: ListRole
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Role'
 components:
   securitySchemes:
     bearerAuth:
@@ -200,6 +317,15 @@ components:
           type: string
           format: date-time
     UserRole:
+      required:
+        - name
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+    Role:
       required:
         - name
       properties:

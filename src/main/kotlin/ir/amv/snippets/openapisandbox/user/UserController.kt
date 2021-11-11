@@ -44,11 +44,23 @@ class UserController(
         )
     }
 
+    override fun deleteUserById(id: UUID): ResponseEntity<UserDto> {
+        return ResponseEntity.ok(
+            repo.findByIdOrNull(id)!!
+                .also {
+                    repo.delete(it)
+                }
+                .toDto()
+        )
+    }
+
     private fun UserDto.toEntity(id: UUID? = null): UserEntity =
         UserEntity(
             id = id ?: this.id,
             firstName = firstName,
-            lastName = lastName
+            lastName = lastName,
+            birthDate = birthDate,
+            deathDate = deathDate
         )
 
     private fun UserEntity.toDto(): UserDto =
@@ -56,4 +68,6 @@ class UserController(
             .id(id)
             .firstName(firstName)
             .lastName(lastName)
+            .birthDate(birthDate)
+            .deathDate(deathDate)
 }

@@ -48,6 +48,14 @@ class UserRoleController(
         )
     }
 
+    override fun findUserRoleById(userId: UUID, id: UUID): ResponseEntity<UserRoleDto> {
+        return ResponseEntity.ok(
+            repo.findByIdOrNull(id)
+                .takeIf { it?.user?.id == userId }!!
+                .toDto()
+        )
+    }
+
     private fun UserRoleEntity.toDto() =
         UserRoleDto()
             .id(id)
