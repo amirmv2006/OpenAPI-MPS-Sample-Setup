@@ -153,7 +153,26 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/UserRole'
+    put:
+      tags:
+        - UserRole
+      summary: UpdateUserRole
+      operationId: UpdateUserRole
+      description: UpdateUserRole
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRole'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserRole'
 components:
   securitySchemes:
     bearerAuth:
@@ -163,6 +182,9 @@ components:
       description: ''
   schemas:
     User:
+      required:
+        - birthDate
+        - deathDate
       properties:
         id:
           type: string
@@ -171,6 +193,12 @@ components:
           type: string
         lastName:
           type: string
+        birthDate:
+          type: string
+          format: date
+        deathDate:
+          type: string
+          format: date-time
     UserRole:
       required:
         - name
