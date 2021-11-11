@@ -1,0 +1,182 @@
+openapi: 3.0.7
+info:
+  title: user-api
+  version: '0.0.1'
+tags:
+  - name: User
+  - name: UserRole
+paths:
+  # User Endpoints
+  /users/:
+    post:
+      tags:
+        - User
+      summary: CreateUser
+      operationId: CreateUser
+      description: CreateUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+                format: uuid
+    get:
+      tags:
+        - User
+      summary: ListUsers
+      operationId: ListUsers
+      description: ListUsers
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+  /users/{id}:
+    parameters:
+      - in: path
+        required: true
+        name: id
+        schema:
+          type: string
+          format: uuid
+    put:
+      tags:
+        - User
+      summary: UpdateUser
+      operationId: UpdateUser
+      description: UpdateUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    get:
+      tags:
+        - User
+      summary: GetUserById
+      operationId: GetUserById
+      description: GetUserById
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  # UserRole Endpoints
+  /users/{userId}/roles/:
+    parameters:
+      - in: path
+        required: true
+        name: userId
+        schema:
+          type: string
+          format: uuid
+    post:
+      tags:
+        - UserRole
+      summary: CreateUserRole
+      operationId: CreateUserRole
+      description: CreateUserRole
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRole'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+                format: uuid
+    get:
+      tags:
+        - UserRole
+      summary: GetUserRoles
+      operationId: GetUserRoles
+      description: GetUserRoles
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserRole'
+  /users/{userId}/roles/{id}:
+    parameters:
+      - in: path
+        required: true
+        name: userId
+        schema:
+          type: string
+          format: uuid
+      - in: path
+        required: true
+        name: id
+        schema:
+          type: string
+          format: uuid
+    delete:
+      tags:
+        - UserRole
+      summary: DeleteUserRole
+      operationId: DeleteUserRole
+      description: DeleteUserRole
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+components:
+  securitySchemes:
+    bearerAuth:
+      name: Authorization
+      type: apiKey
+      in: header
+      description: ''
+  schemas:
+    User:
+      properties:
+        id:
+          type: string
+          format: uuid
+        firstName:
+          type: string
+        lastName:
+          type: string
+    UserRole:
+      required:
+        - name
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
