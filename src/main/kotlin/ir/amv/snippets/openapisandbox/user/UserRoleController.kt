@@ -22,13 +22,13 @@ class UserRoleController(
         )
     }
 
-    override fun deleteUserRole(userId: UUID?, id: UUID?): ResponseEntity<UserRoleDto> {
-        return ResponseEntity.ok(
-            repo.findByIdOrNull(id)!!
-                .also { repo.delete(it) }
-                .toDto()
-        )
-    }
+//    override fun deleteUserRole(userId: UUID?, id: UUID?): ResponseEntity<UserRoleDto> {
+//        return ResponseEntity.ok(
+//            repo.findByIdOrNull(id)!!
+//                .also { repo.delete(it) }
+//                .toDto()
+//        )
+//    }
 
     override fun getUserRoles(userId: UUID): ResponseEntity<List<UserRoleDto>> {
         return ResponseEntity.ok(
@@ -37,16 +37,16 @@ class UserRoleController(
         )
     }
 
-    override fun updateUserRole(userId: UUID, id: UUID, userRoleDto: UserRoleDto): ResponseEntity<UserRoleDto> {
-        return ResponseEntity.ok(
-            repo.findByIdOrNull(id)!!
-                .also {
-                    it.name = userRoleDto.name
-                    repo.save(it)
-                }
-                .toDto()
-        )
-    }
+//    override fun updateUserRole(userId: UUID, id: UUID, userRoleDto: UserRoleDto): ResponseEntity<UserRoleDto> {
+//        return ResponseEntity.ok(
+//            repo.findByIdOrNull(id)!!
+//                .also {
+//                    it.name = userRoleDto.name
+//                    repo.save(it)
+//                }
+//                .toDto()
+//        )
+//    }
 
     override fun findUserRoleById(userId: UUID, id: UUID): ResponseEntity<UserRoleDto> {
         return ResponseEntity.ok(

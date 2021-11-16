@@ -67,10 +67,6 @@ paths:
       responses:
         200:
           description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
     get:
       tags:
         - User
@@ -93,10 +89,6 @@ paths:
       responses:
         200:
           description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
   # UserRole Endpoints
   /users/{userId}/roles/:
     parameters:
@@ -164,10 +156,6 @@ paths:
       responses:
         200:
           description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserRole'
     put:
       tags:
         - UserRole
@@ -183,10 +171,6 @@ paths:
       responses:
         200:
           description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserRole'
     get:
       tags:
         - UserRole
@@ -224,10 +208,6 @@ paths:
       responses:
         200:
           description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Role'
     get:
       tags:
         - Role
@@ -250,10 +230,6 @@ paths:
       responses:
         200:
           description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Role'
   /roles/:
     post:
       tags:
