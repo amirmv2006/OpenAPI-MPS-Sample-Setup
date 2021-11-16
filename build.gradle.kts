@@ -19,7 +19,6 @@ repositories {
 }
 
 sourceSets.getByName("main") {
-    java.srcDir(buildDir.resolve("loco-repo/generated/src/main/mps/zargari/source_gen"))
     java.srcDir(buildDir.resolve("generated/open-api-server/src/main/java"))
 }
 
